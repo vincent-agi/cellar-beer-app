@@ -1,0 +1,7 @@
+{
+  "name": "cave-a-bieres",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
