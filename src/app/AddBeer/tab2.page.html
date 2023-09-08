@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ajouter Biere
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="beer-form" [formGroup]="beerForm">
+    <label for="name">Nom</label>
+    <ion-input type="text" formControlName="name"></ion-input>
+    <label for="mark">Note sur 5</label>
+    <ion-input type="number" max="5" formControlName="mark"></ion-input>
+    <label for="comments">Commentaire</label>
+    <ion-input type="text" formControlName="comments"></ion-input>
+  </div>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button *ngIf="beerForm.valid">
+      <ion-icon (click)="addPhotoToGallery()" name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

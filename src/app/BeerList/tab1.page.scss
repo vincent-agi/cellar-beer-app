@@ -1,0 +1,35 @@
+.beer-img {
+    padding: 5px;
+    height: auto;
+    width: 150px;
+}
+
+.beer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin: 10px;
+    background-color: #fff;
+    border: solid 2px gray;
+}
+
+.container-beer-img {
+    display: flex;
+    flex-direction: column;
+}
+
+.beer-name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.beer-mark, .beer-comments {
+    font-weight: bold;
+    color: black;
+    font-size: 14;
+}
