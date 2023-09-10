@@ -20,7 +20,9 @@ export class BeerDetailsComponent  implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       if(params['id']) {
-        this.beer = this.beerService.getBeerById(params['id'])
+        this.beerService.getBeerById(params['id']).subscribe((beer) => {
+          this.beer = beer;
+        })
       }
     })
   }

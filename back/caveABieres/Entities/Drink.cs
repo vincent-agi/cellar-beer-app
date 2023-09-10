@@ -1,4 +1,6 @@
-﻿namespace caveABieres.Entities
+﻿using System.Buffers.Text;
+
+namespace caveABieres.Entities
 {
     public class Drink
     {
@@ -8,6 +10,7 @@
         public string? Description { get; set; }
         public int Mark { get; set; }
 
+        public string? base64Image { get; set; }
         public User? User { get; set; }
     }
 }

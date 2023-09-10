@@ -10,7 +10,8 @@ using System.Text;
 
 namespace caveABieres.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : Controller
     {
 

@@ -3,11 +3,13 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { Beer } from "../interfaces/Beer"
+import { Observable } from 'rxjs';
+import { AbstractRequestService } from './abstract.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BeerService {
+export class BeerService extends AbstractRequestService {
 
   public totalitarBeer: Beer = {
     id: '1',
@@ -32,7 +34,6 @@ export class BeerService {
     this.beralAged
   ];
 
-  constructor() { }
 
   public async addNewToGallery(name:string, mark:number, comments?:string) {
   // Take a photo
@@ -85,7 +86,11 @@ export class BeerService {
     reader.readAsDataURL(blob);
   });
 
-  public getBeerById(id:string): Beer | undefined {
-    return this.beers.find((beer) => beer.id == id);
+  public getBeerById(id:string): Observable<Beer> {
+    return this.http.get<Beer>(`${this.apiUrl}/beers/${id}`)
+  }
+
+  public getBeers(): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${this.apiUrl}/beers`)
   }
 }

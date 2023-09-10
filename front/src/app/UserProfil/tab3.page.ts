@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TokenStorageService } from '../services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(
+    private readonly tokenStorageService: TokenStorageService,
+    private readonly router: Router
+  ) {}
+
+  public logout(): void {
+    this.tokenStorageService.removeToken();
+    this.router.navigateByUrl('/auth/login');
+  }
 
 }
