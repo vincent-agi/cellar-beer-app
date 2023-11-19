@@ -10,7 +10,7 @@ import { Beer } from '../interfaces/Beer';
 })
 export class BeerDetailsComponent  implements OnInit {
 
-  public beer!: Beer | undefined;
+  public beer!: any | undefined;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -20,9 +20,7 @@ export class BeerDetailsComponent  implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       if(params['id']) {
-        this.beerService.getBeerById(params['id']).subscribe((beer) => {
-          this.beer = beer;
-        })
+        this.beer = this.beerService.getBeerLocalStorage(params['id'])
       }
     })
   }

@@ -8,11 +8,17 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" *ngFor="let beer of beerService.beers; index as position">
+      <ion-col size="12" *ngFor="let beer of beers; index as position">
         <div class="beer-card">
+          <div class="dropdown">
+            <button>Actions</button>
+            <div class="dropdown-content">
+              <a (click)="update(beer.id)" style="cursor: pointer;">Edit</a>
+              <a (click)="deleteBeer(beer.id)" style="cursor: pointer;">Delete</a>
+            </div>
+          </div>
           <div class="container-beer-img">
-            <ion-img class="beer-img" [src]="beer.webviewPath"
-            routerLink="/beer/{{beer.id}}"
+            <ion-img class="beer-img" [src]="beer.image"
             ></ion-img>
             <span class="beer-name">{{beer.name}}</span>
             <span class="beer-mark">{{beer.mark}} /5 </span>

@@ -1,39 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Preferences } from '@capacitor/preferences';
 import { Beer } from "../interfaces/Beer"
 import { Observable } from 'rxjs';
-import { AbstractRequestService } from './abstract.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BeerService extends AbstractRequestService {
-
-  public totalitarBeer: Beer = {
-    id: '1',
-    filepath: '',
-    webviewPath: 'https://images.punkapi.com/v2/keg.png',
-    name: "TotalitarBeer",
-    mark: 5,
-    comments: "Commentaire sur totalitarBeer"    
-  };
-
-  public beralAged: Beer = {
-    id: '2',
-    filepath: '',
-    webviewPath: 'https://images.punkapi.com/v2/217.png',
-    name: "Barel Aged",
-    mark: 4,
-    comments: 'Super beer'
-  }
-
-  public beers: Beer[] = [
-    this.totalitarBeer,
-    this.beralAged
-  ];
-
+export class BeerService {
+  allBears: Beer[] = [];
+  beers: any;
 
   public async addNewToGallery(name:string, mark:number, comments?:string) {
   // Take a photo
@@ -44,6 +20,7 @@ export class BeerService extends AbstractRequestService {
     });
     const savedImageFile = await this.savePicture(capturedPhoto, name, mark, comments);
     this.beers.unshift(savedImageFile);
+    this.createBeerByLS(savedImageFile)
   }
 
   private async savePicture(photo: any, name:string, mark:number, comments?:string) {
@@ -86,11 +63,28 @@ export class BeerService extends AbstractRequestService {
     reader.readAsDataURL(blob);
   });
 
-  public getBeerById(id:string): Observable<Beer> {
-    return this.http.get<Beer>(`${this.apiUrl}/beers/${id}`)
+  public getBeerLocalStorage(id?:any) {
+    let beer = [] as any
+    beer = localStorage.getItem('Beers');
+    this.allBears = beer ? JSON.parse(beer) : [];
+    if(!id) return this.allBears;
+    else return this.allBears.find(x=>x.id == id);
   }
-
-  public getBeers(): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${this.apiUrl}/beers`)
+  
+  
+  public createBeerByLS(beer: any){
+    if(!this.allBears) this.allBears = []
+    this.allBears.push(beer);
+    this.updateBeersLocalStorage(this.allBears)
+  }
+  public updateBeersLocalStorage(beers: any) {
+    const beersJson = JSON.stringify(beers);
+    localStorage.removeItem('Beers')
+    localStorage.setItem('Beers', beersJson);
+  }
+  public updateBeerLocalStorage(beer: any) {
+    let index = this.allBears.findIndex(x=>x.id == beer.id);
+    this.allBears[index] = beer;
+    this.updateBeersLocalStorage(this.allBears)
   }
 }

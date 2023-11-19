@@ -16,8 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../AddBeer/tab2.module').then(m => m.Tab2PageModule)
       },
       {
-        path: 'user-profil',
-        loadChildren: () => import('../UserProfil/tab3.module').then(m => m.Tab3PageModule)
+        path: 'add-beer/:id',
+        loadChildren: () => import('../AddBeer/tab2.module').then(m => m.Tab2PageModule)
       },
       {
         path: '',

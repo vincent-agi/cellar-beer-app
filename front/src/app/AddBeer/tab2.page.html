@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Ajouter Biere
@@ -19,4 +19,44 @@
       <ion-icon (click)="addPhotoToGallery()" name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+</ion-content> -->
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ajouter Biere
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="beerForm" (ngSubmit)="onSubmit()">
+    <div class="beer-form">
+      <label for="name">Nom</label>
+      <ion-input type="text" formControlName="name"></ion-input>
+      <label for="mark">Note sur 5</label>
+      <ion-input type="number" max="5" formControlName="mark"></ion-input>
+      <label for="comments">Commentaire</label>
+      <ion-input type="text" formControlName="comments"></ion-input>
+      
+      <ng-container *ngIf="!edit_view">
+        <label for="imageUpload" class="custom-file-input-label">Upload Image</label>
+        <ion-input type="file" class="file-input" accept="image/*" id="imageUpload" formControlName="image" (change)="onImageUpload($event)"></ion-input>
+      </ng-container>
+      <ng-container *ngIf="edit_view">
+        <label for="imageUpload" class="custom-file-input-label">
+          Image
+          <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*" style="display: none">
+          <ion-icon name="pencil" class="edit-icon"></ion-icon>
+        </label>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <ion-img [src]="imageURL" style="width: 20%; height: 20%;"></ion-img>
+        </div>
+        
+      </ng-container>
+      
+    </div>
+    <ion-button expand="full" type="submit" [disabled]="!beerForm.valid"> {{ edit_view ? 'Modifier' : 'Ajouter' }}</ion-button>
+  </form>
+   
 </ion-content>
