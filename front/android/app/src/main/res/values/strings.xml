@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cave-a-bieres</string>
+    <string name="title_activity_main">cave-a-bieres</string>
+    <string name="package_name">cave.a.biere</string>
+    <string name="custom_url_scheme">cave.a.biere</string>
+</resources>
