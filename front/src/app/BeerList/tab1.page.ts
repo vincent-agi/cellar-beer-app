@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BeerService } from '../services/beer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewDidEnter } from '@ionic/angular';
+import { Beer } from '../interfaces/Beer';
 
 @Component({
   selector: 'app-tab1',
@@ -12,6 +13,8 @@ export class Tab1Page implements OnInit, ViewDidEnter {
   public beers: any = [];
 
   public search:string = "";
+
+  public isFavorite: boolean = false;
 
   constructor(public beerService: BeerService,private router:Router,private route: ActivatedRoute) {
   }
@@ -35,5 +38,15 @@ export class Tab1Page implements OnInit, ViewDidEnter {
   }
   update(id:string){
     this.router.navigate(['add-beer/'+id])
+  }
+
+
+  public filtersByFavorites(): void {
+    this.isFavorite = !this.isFavorite;
+    if(this.isFavorite) {
+      this.beers = this.beers.filter((b: Beer) => b.favorite == true)
+    } else {
+      this.getBeer();
+    }
   }
 }

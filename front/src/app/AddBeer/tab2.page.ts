@@ -19,6 +19,7 @@ export class Tab2Page implements OnInit {
     name: new FormControl('', Validators.required),
     mark : new FormControl('', Validators.required),
     comments: new FormControl(''),
+    favorite: new FormControl(''),
     image: new FormControl(''),
   })
   constructor(
@@ -41,6 +42,7 @@ export class Tab2Page implements OnInit {
       if(data){
         this.beerForm.get('name')?.setValue(data.name);
         this.beerForm.get('mark')?.setValue(data.mark);
+        this.beerForm.get('favorite')?.setValue(data.isFavorite);
         this.beerForm.get('comments')?.setValue(data.description);
         this.beerForm.get('image')?.setValue(data.image);
         this.imageURL = data.image
@@ -52,6 +54,7 @@ export class Tab2Page implements OnInit {
       const name = this.beerForm.get('name')?.value;
       const mark = this.beerForm.get('mark')?.value;
       const comments = this.beerForm.get('comments')?.value;
+      const isFavorite = this.beerForm.get('favorite')?.value;
   
       if (this.imageURL) {
         // Handle the image if a new one is selected
@@ -61,6 +64,7 @@ export class Tab2Page implements OnInit {
             name: name,
             mark: mark,
             description: comments,
+            favorite: isFavorite,
             image: this.imageURL
           };
   

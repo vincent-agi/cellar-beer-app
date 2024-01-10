@@ -5,4 +5,5 @@ export interface Beer {
     name?: string;
     mark?: number;
     comments?: string;
+    favorite: boolean;
   }
