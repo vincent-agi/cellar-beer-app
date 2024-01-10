@@ -11,6 +11,8 @@ import { ViewDidEnter } from '@ionic/angular';
 export class Tab1Page implements OnInit, ViewDidEnter {
   public beers: any = [];
 
+  public search:string = "";
+
   constructor(public beerService: BeerService,private router:Router,private route: ActivatedRoute) {
   }
 
