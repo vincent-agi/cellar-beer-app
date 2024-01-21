@@ -12,7 +12,6 @@
     align-items: center;
     height: auto;
     width: 100%;
-    background-color: #fff;
     border: solid 2px gray;
 }
 
@@ -21,18 +20,24 @@
     flex-direction: column;
     width: 100%;
     padding: 10px;
+
+    .main-infos-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .beer-name {
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 
 .beer-mark, .beer-comments {
     font-weight: bold;
-    color: black;
+    color: white;
     font-size: 14;
 }
 .dropdown {

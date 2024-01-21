@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { BeerDetailsComponent } from '../beer-details/beer-details.component';
+import { SearchPipe } from '../pipes/searchPipe';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { BeerDetailsComponent } from '../beer-details/beer-details.component';
   declarations: [
     Tab1Page,
     BeerDetailsComponent,
+    SearchPipe
   ]
 })
 export class Tab1PageModule {}

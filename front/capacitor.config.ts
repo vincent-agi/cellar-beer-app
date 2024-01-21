@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'android;cellar.beers',
+  appId: 'cave.a.biere',
   appName: 'cave-a-bieres',
   webDir: 'www',
   server: {
