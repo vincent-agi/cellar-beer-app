@@ -8,6 +8,14 @@
 <ion-content>
   <form [formGroup]="beerForm" (ngSubmit)="onSubmit()">
     <div class="beer-form">
+      <ion-item>
+        <ion-select label="Type de bière" placeholder="blanche, blonde, rousse, brune" formControlName="type">
+          <ion-select-option value="blanche">Blanche</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="rousse">Rousse/Ambrée</ion-select-option>
+          <ion-select-option value="brune">Brune</ion-select-option>
+        </ion-select>
+      </ion-item>
       <label for="name">Nom</label>
       <ion-input type="text" formControlName="name"></ion-input>
       <label for="mark">Note sur 5</label>

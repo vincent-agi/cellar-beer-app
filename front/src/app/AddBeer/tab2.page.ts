@@ -21,7 +21,8 @@ export class Tab2Page implements OnInit {
     comments: new FormControl(''),
     favorite: new FormControl(''),
     image: new FormControl(''),
-    degree: new FormControl('')
+    degree: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required)
   })
   constructor(
     public beerService:BeerService,
@@ -47,6 +48,7 @@ export class Tab2Page implements OnInit {
         this.beerForm.get('comments')?.setValue(data.description);
         this.beerForm.get('degree')?.setValue(data.degree)
         this.beerForm.get('image')?.setValue(data.image);
+        this.beerForm.get('type')?.setValue(data.type)
         this.imageURL = data.image
       }
     }
@@ -57,6 +59,7 @@ export class Tab2Page implements OnInit {
       const mark = this.beerForm.get('mark')?.value;
       const degree = this.beerForm.get('degree')?.value;
       const comments = this.beerForm.get('comments')?.value;
+      const type = this.beerForm.get('type')?.value;
       const isFavorite = this.beerForm.get('favorite')?.value;
   
       if (this.imageURL) {
@@ -67,6 +70,7 @@ export class Tab2Page implements OnInit {
             name: name,
             mark: mark,
             degree: degree,
+            type: type,
             description: comments,
             favorite: isFavorite,
             image: this.imageURL
