@@ -8,4 +8,5 @@ export interface Beer {
     favorite: boolean;
     type: string;
     degree: number;
+    tags?: string[];
   }
