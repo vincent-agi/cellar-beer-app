@@ -6,4 +6,5 @@ export interface Beer {
     mark?: number;
     comments?: string;
     favorite: boolean;
+    degree: number;
   }

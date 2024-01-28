@@ -21,6 +21,7 @@ export class Tab2Page implements OnInit {
     comments: new FormControl(''),
     favorite: new FormControl(''),
     image: new FormControl(''),
+    degree: new FormControl('')
   })
   constructor(
     public beerService:BeerService,
@@ -44,6 +45,7 @@ export class Tab2Page implements OnInit {
         this.beerForm.get('mark')?.setValue(data.mark);
         this.beerForm.get('favorite')?.setValue(data.isFavorite);
         this.beerForm.get('comments')?.setValue(data.description);
+        this.beerForm.get('degree')?.setValue(data.degree)
         this.beerForm.get('image')?.setValue(data.image);
         this.imageURL = data.image
       }
@@ -53,6 +55,7 @@ export class Tab2Page implements OnInit {
     if (this.beerForm.valid) {
       const name = this.beerForm.get('name')?.value;
       const mark = this.beerForm.get('mark')?.value;
+      const degree = this.beerForm.get('degree')?.value;
       const comments = this.beerForm.get('comments')?.value;
       const isFavorite = this.beerForm.get('favorite')?.value;
   
@@ -63,6 +66,7 @@ export class Tab2Page implements OnInit {
             id: this.beerId ? this.beerId : Date.now(),
             name: name,
             mark: mark,
+            degree: degree,
             description: comments,
             favorite: isFavorite,
             image: this.imageURL
@@ -78,7 +82,7 @@ export class Tab2Page implements OnInit {
           this.beerForm.reset();
       } 
     } else {
-      console.log('No file selected.');
+      alert("Aucun fichier selectionné")
     }
   }
   onImageUpload(event: Event) {

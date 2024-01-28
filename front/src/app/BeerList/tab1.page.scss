@@ -25,11 +25,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        align-items: flex-end;
     }
 }
 
 .beer-name {
-    margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
     color: white;
