@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BeerService } from '../services/beer.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ViewDidEnter } from '@ionic/angular';
 import { Beer } from '../interfaces/Beer';
+import { ConfigService } from '../services/config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -16,8 +17,7 @@ export class Tab1Page implements OnInit, ViewDidEnter {
 
   public isFavorite: boolean = false;
 
-  constructor(public beerService: BeerService,private router:Router,private route: ActivatedRoute) {
-  }
+  constructor(public beerService: BeerService,private router:Router) {}
 
   ngOnInit() {
     this.getBeer()

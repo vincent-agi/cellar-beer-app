@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  public version:string = "";
+
+  constructor(private readonly config: ConfigService) {
+    this.version = this.config.version
+  }
 
 }
