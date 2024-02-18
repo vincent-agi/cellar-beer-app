@@ -8,6 +8,8 @@
 <ion-content>
   <form [formGroup]="beerForm" (ngSubmit)="onSubmit()">
     <div class="beer-form">
+
+      <!-- BEER TYPE SELECT -->
       <ion-item>
         <ion-select label="Type de bière" placeholder="blanche, blonde, rousse, brune" formControlName="type">
           <ion-select-option value="blanche">Blanche</ion-select-option>
@@ -16,6 +18,8 @@
           <ion-select-option value="brune">Brune</ion-select-option>
         </ion-select>
       </ion-item>
+
+      <!-- BASIC FORM DATA -->
       <label for="name">Nom</label>
       <ion-input type="text" formControlName="name"></ion-input>
       <label for="mark">Note sur 5</label>
@@ -27,6 +31,7 @@
       <label for="favorite">Favoris</label>
       <ion-checkbox id="favoris-checkbox" formControlName="favorite"></ion-checkbox>
       
+      <!-- UPLOAD IMG -->
       <div *ngIf="!edit_view" class="container-img">
         <label for="imageUpload" class="custom-file-input-label">Ajouter une image</label>
         <ion-input type="file" class="file-input" accept="image/*" id="imageUpload" formControlName="image" (change)="onImageUpload($event)"></ion-input>
@@ -40,8 +45,15 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <ion-img [src]="imageURL" style="width: 20%; height: 20%;"></ion-img>
         </div>
-        
       </div>
+
+      <!-- TAGS -->
+      <label for="tags">Tags</label>
+      <ion-input id="tags" type="text" [(ngModel)]="currentTag" [ngModelOptions]="{standalone: true}" (keyup.Space)= "addTag(currentTag)"></ion-input>
+      <ion-item style="display: block;" *ngFor="let tag of tags; let i = index;">
+          <ion-label>{{tag}}</ion-label>
+          <ion-icon name="close-outline" (click)="removeTag(i)"></ion-icon>
+      </ion-item>
       
     </div>
     <ion-button expand="full" type="submit" [disabled]="!beerForm.valid"> {{ edit_view ? 'Modifier' : 'Ajouter' }}</ion-button>

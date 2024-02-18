@@ -15,6 +15,9 @@ export class Tab2Page implements OnInit {
   edit_view:boolean = false;
   selectedFile:any;
   imageURL:any;
+  public tags: string[] = []
+  public currentTag: string = '';
+
   public beerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     mark : new FormControl('', Validators.required),
@@ -48,7 +51,8 @@ export class Tab2Page implements OnInit {
         this.beerForm.get('comments')?.setValue(data.description);
         this.beerForm.get('degree')?.setValue(data.degree)
         this.beerForm.get('image')?.setValue(data.image);
-        this.beerForm.get('type')?.setValue(data.type)
+        this.beerForm.get('type')?.setValue(data.type);
+        this.tags = data.tags;
         this.imageURL = data.image
       }
     }
@@ -73,7 +77,8 @@ export class Tab2Page implements OnInit {
             type: type,
             description: comments,
             favorite: isFavorite,
-            image: this.imageURL
+            image: this.imageURL,
+            tags: this.tags
           };
   
           if (this.edit_view) {
@@ -102,5 +107,15 @@ export class Tab2Page implements OnInit {
       };
       reader.readAsDataURL(newImage);
     }
+  }
+
+
+  public addTag(tag: string){
+    this.tags.push(tag);
+    this.currentTag = '';
+  }
+
+  public removeTag(i: any){
+    this.tags.splice(i, 1)
   }
 }
